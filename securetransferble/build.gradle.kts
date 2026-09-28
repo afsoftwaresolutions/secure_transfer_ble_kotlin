@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.ksp)
+    id("maven-publish")
 }
 
 android {
@@ -26,6 +27,23 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+    publishing {
+        singleVariant("release")
+    }
+}
+
+publishing {
+    publications {
+        register<MavenPublication>("release") {
+            groupId = "com.github.afsoftwaresolutions.secure_transfer_ble_kotlin"
+            artifactId = "securetransferble"
+            version = "0.1.0"
+
+            afterEvaluate {
+                from(components["release"])
+            }
+        }
     }
 }
 

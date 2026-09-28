@@ -1,0 +1,6 @@
+jdk:
+  - openjdk17
+before_install:
+  - rm -f gradle/gradle-daemon-jvm.properties
+install:
+  - ./gradlew :securetransferble:publishReleasePublicationToMavenLocal
