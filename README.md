@@ -27,7 +27,27 @@ class TransferViewModel @Inject constructor(
 ) : ViewModel()
 ```
 
-La dependencia `project(":securetransferble")` funciona cuando el módulo está incluido en el mismo proyecto Gradle. Para consumirlo desde otro repositorio se necesita publicar un artefacto Android o integrar el módulo allí; una URL de Git no sustituye una dependencia Maven de Gradle.
+## Usar la librería desde otra app Android
+
+En el `settings.gradle.kts` de la app consumidora, agrega JitPack al final de los repositorios de dependencias:
+
+```kotlin
+dependencyResolutionManagement {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url = uri("https://jitpack.io") }
+    }
+}
+```
+
+En el bloque `dependencies` del módulo de la app:
+
+```kotlin
+implementation("com.github.afsoftwaresolutions:secure_transfer_ble_kotlin:0.1.0")
+```
+
+La versión `0.1.0` corresponde a un tag de este repositorio. La app de ejemplo incluida aquí usa `implementation(project(":securetransferble"))` para trabajar directamente con el código fuente.
 
 ## Permisos de la app consumidora
 
