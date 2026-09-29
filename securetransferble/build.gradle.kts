@@ -7,27 +7,26 @@ plugins {
 
 android {
     namespace = "com.interrapidisimo.securetransferble"
-    compileSdk {
-        version = release(37)
-    }
+
+    compileSdk = 36
 
     defaultConfig {
-        minSdk = 26
+        minSdk = 23
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            optimization {
-                enable = false
-            }
+            isMinifyEnabled = false
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
     publishing {
         singleVariant("release")
     }
