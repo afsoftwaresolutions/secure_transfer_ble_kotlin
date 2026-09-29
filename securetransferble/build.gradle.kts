@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.ksp)
     id("maven-publish")
+    alias(libs.plugins.kotlin.android)
 }
 
 android {
@@ -27,9 +28,18 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 
+    kotlinOptions {
+        jvmTarget = "11"
+    }
+
     publishing {
         singleVariant("release")
     }
+
+}
+
+kotlin {
+    jvmToolchain(11)
 }
 
 publishing {
